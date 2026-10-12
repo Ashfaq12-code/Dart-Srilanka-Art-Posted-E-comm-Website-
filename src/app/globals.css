@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-padding-top: 100px; /* Accounts for TopBar + Navbar height */
+}
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] dark:from-[#1a0505] dark:via-[#0a0000] dark:to-black text-gray-900 dark:text-gray-100 transition-colors duration-500;
+    overflow-x: hidden;
+  }
+
+  .font-cursive {
+    font-family: 'Caveat', 'Dancing Script', cursive;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@layer components {
+  /* Simple utility classes for the light theme */
+  .card-simple {
+    @apply bg-white border border-gray-100 shadow-sm rounded-2xl;
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Hide scrollbar for carousels but keep main scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Premium "Cheese-Step" Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  border: 4px solid transparent;
+  background-clip: content-box;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B91C1C;
+  background-clip: content-box;
+  border: 3px solid transparent;
+}
+
+/* Smooth Entrance Utilities */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Premium Typography Tracking */
+.tracking-premium {
+  letter-spacing: 0.2em;
+}
+
+.tracking-tight-premium {
+  letter-spacing: -0.05em;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+
+
+/* Premium Button Utilities */
+.btn-premium-shadow {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px -12px rgba(0, 0, 0, 0.25);
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes shine {
+  0% { left: -100%; opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { left: 100%; opacity: 0; }
+}
+
+.animate-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+}
+
+.group:hover .animate-shine::after {
+  animation: shine 0.8s ease-in-out;
+}
+
+
